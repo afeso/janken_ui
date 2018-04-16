@@ -1,6 +1,6 @@
 // some mini REGEX
 var goodReg = new RegExp("Win");
-var badReg = new RegExp("Loose","i"); // case insensitive RegExp
+var badReg = new RegExp("lose","i"); // case insensitive RegExp
 var neutralReg = new RegExp("Invalid");
 
 //scores counter initialized at 0
@@ -36,7 +36,7 @@ function janken(playerSelection, computerSelection) {
 
   if (player == 'rock') {
     if (pc == 'paper') {
-      return 'You loose! Paper beats Rock';
+      return 'You lose! Paper beats Rock';
     } else if (pc == 'scissors') {
       return 'You Win! Rock beats Scissors';
     } else {
@@ -46,7 +46,7 @@ function janken(playerSelection, computerSelection) {
     if (pc == 'paper') {
       return 'Its a tie.';
     } else if (pc == 'scissors') {
-      return 'You Loose! Scissors beats Paper';
+      return 'You Lose! Scissors beats Paper';
     } else {
       return 'You Win! Paper beats Rock';
     }
@@ -54,7 +54,7 @@ function janken(playerSelection, computerSelection) {
     if (pc == 'paper') {
       return 'You Win! Scissors beats paper';
     } else if (pc == 'rock') {
-      return 'You Loose! Rock beats Scissors';
+      return 'You Lose! Rock beats Scissors';
     } else {
       return 'Its a tie.'
     }
@@ -99,32 +99,34 @@ buttons.forEach((button) => {
     const playerSelection = e.target; // gets the target (class or id) of the clicked button
     playerSelection.classList.add('played'); // add a class to clicked button
     game(playerSelection.id); // play Janken with the id if the player selection
-    // console.log(button.id);
     // console.log(e);
 
     // change the HTML Values
-    player.innerHTML = playerScore;
-    computer.innerHTML = computerScore;
-    ties.innerHTML = tie;
-    desc.innerHTML = outsideResult;
-
-    // if (playerScore == 5 || computerScore == 5) {
-    //
-    //   // (playerScore > computerScore)? alert('You Win!') : alert('You Loose!');
-    //   playerScore = 0;
-    //   computerScore = 0;
-    //   tie = 0;
-    // }
+    updateScore();
   });
 });
 
 function checkScore() {
   if (playerScore == 5 || computerScore == 5) {
-
-    (playerScore > computerScore)? alert('You Win!') : alert('You Loose!');
-    playerScore = 0;
-    computerScore = 0;
-    tie = 0;
+    updateScore();
+    // var check = (playerScore > computerScore)? confirm('You Win! Continue?') : confirm('You lose! Continue');
+    // console.log(check);
+    // if (check == true) {
+    //   playerScore = 0;
+    //   computerScore = 0;
+    //   tie = 0;
+    //   updateScore();
+    // } else {
+    //   updateScore();
+    // }
+    setTimeout(function() {
+      (playerScore > computerScore)? alert('You Win!') : alert('You lose!');
+      playerScore = 0;
+      computerScore = 0;
+      tie = 0;
+      updateScore();
+      desc.innerHTML = 'Rock, Paper or Scissors?';
+    },500);
   }
 }
 
@@ -133,6 +135,14 @@ function removeTransition(e) {
   if(e.propertyName !== 'transform') return;
   this.classList.remove('played');
 }
+
+function updateScore() {
+  player.innerHTML = playerScore;
+  computer.innerHTML = computerScore;
+  ties.innerHTML = tie;
+  desc.innerHTML = outsideResult;
+}
+
 
 const btn = document.querySelectorAll('button');
 btn.forEach(button => button.addEventListener('transitionend', removeTransition));

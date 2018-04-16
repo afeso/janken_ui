@@ -3,7 +3,7 @@ This is a game of  Rock, Paper, Scissors against a computer. It's currently goin
 
 
 # 19/01/2018
-* Phase 1 complete: The janken(rock, paper, scissors) function works well. 
+* Phase 1 complete: The janken(rock, paper, scissors) function works well.
 * function is case insensitive for the player's selection.
 * randomly generated numbers (0 - 2) returns rock - scissors for the computer.
 
@@ -19,4 +19,6 @@ This is a game of  Rock, Paper, Scissors against a computer. It's currently goin
 * The game can now be played without using the console.
 * The page is updated with the score after each play.
 
-
+# 16/04/2018
+* changed every instance of "loose" to "lose".
+* fixed the bug where the "win" or "loose" alert pops up before scores update"
